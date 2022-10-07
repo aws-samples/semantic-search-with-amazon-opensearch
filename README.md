@@ -14,3 +14,4 @@ When we present a new query text/sentence, it's computing the related embedding 
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
+
