@@ -9,7 +9,7 @@ we have used pre-trained BERT model from sentence-transformers to generate fixed
 
 When we present a new query text/sentence, it's computing the related embedding from Amazon SageMaker hosted BERT model and query Amazon ES KNN index to find similar text/sentence and corresponds to the actual product image which is stored in Amazon S3
 
-![diagram](./semantic_search_ranking.png)
+![diagram](./semantic_search_fullstack.jpg)
 
 ## License
 
