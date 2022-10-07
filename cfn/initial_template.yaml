@@ -6,7 +6,7 @@ Resources:
     Type: AWS::SageMaker::CodeRepository
     Properties:
       GitConfig:
-          RepositoryUrl: https://github.com/leejianwei/semantic-search
+          RepositoryUrl: https://github.com/aws-samples/semantic-search-with-amazon-opensearch
 
   NotebookInstance:
     Type: AWS::SageMaker::NotebookInstance
