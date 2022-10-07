@@ -1,0 +1,3 @@
+sentence-transformers
+sagemaker-containers
+numpy>=1.17
