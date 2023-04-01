@@ -5,9 +5,7 @@ This repository guides users through creating a semantic search using Amazon Sag
 
 ## How does it work?
 
-we have used pre-trained BERT model from sentence-transformers to generate fixed 768 length sentence embedding on Amazon Product Question and Answer(https://registry.opendata.aws/amazon-pqa/). Then those feature vectors is imported in Amazon ES KNN Index as a reference.
-
-When we present a new query text/sentence, it's computing the related embedding from Amazon SageMaker hosted BERT model and query Amazon ES KNN index to find similar text/sentence and corresponds to the actual product image which is stored in Amazon S3
+This code repository is for [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US). For more information about semantic search, please refer the workshop content.
 
 ![diagram](./semantic_search_fullstack.jpg)
 
