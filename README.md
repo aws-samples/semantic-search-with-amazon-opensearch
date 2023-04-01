@@ -11,6 +11,16 @@ When we present a new query text/sentence, it's computing the related embedding 
 
 ![diagram](./semantic_search_fullstack.jpg)
 
+### CloudFormation Deployment
+
+1. The workshop can only be deployed in us-east-1 region
+2. Use the Cloudformation template `cfn/semantic-search.yaml` to create CF stack
+3. Cloudformation stack name must be `semantic-search` as we use this stack name in our lab
+
+### Lab Instruction
+Please refer [Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
+
+
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.

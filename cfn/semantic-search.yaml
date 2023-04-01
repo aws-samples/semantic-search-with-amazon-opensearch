@@ -85,31 +85,35 @@ Resources:
               AWS: !Ref AWS::AccountId
             Action: 'es:*'
             Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*/*
-      EngineVersion: 'OpenSearch_1.3'
+      EngineVersion: 'OpenSearch_2.5'
       ClusterConfig:
-        InstanceType: "m5.large.search"
+        InstanceType: "r6g.xlarge.search"
       EBSOptions:
         EBSEnabled: True
-        VolumeSize: 10
-        VolumeType: 'gp2'
+        VolumeSize: 20
+        VolumeType: 'gp3'
 
 
 Outputs:
-  DomainEndpoint:
+  OpenSearchDomainEndpoint:
     Value:
       'Fn::GetAtt':
         - OpenSearchServiceDomain
         - DomainEndpoint
 
-  osArn:
+  OpenSourceDomainArn:
     Value:
       'Fn::GetAtt':
         - OpenSearchServiceDomain
         - Arn
 
-  osDomainName:
+  OpenSearchDomainName:
     Description: OpenSearch domain name
     Value: !Ref OpenSearchServiceDomain
+
+  Region:
+    Description: Deployed Region
+    Value: !Ref AWS::Region
 
   s3BucketTraining:
     Description: S3 bucket name for training
