@@ -1,6 +1,6 @@
 ## Improve search relevance with machine learning in Amazon OpenSearch Service
 
-This repository guides users through creating a semantic search using Amazon SageMaker and Amazon Elasticsearch service
+This repository guides users through creating a semantic search using Amazon SageMaker and Amazon OpenSearch services
 
 
 ## How does it work?
@@ -18,7 +18,7 @@ When we present a new query text/sentence, it's computing the related embedding 
 3. Cloudformation stack name must be `semantic-search` as we use this stack name in our lab
 
 ### Lab Instruction
-Please refer [Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
+Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
 
 ## License
