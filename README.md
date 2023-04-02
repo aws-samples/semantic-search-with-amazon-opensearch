@@ -15,10 +15,11 @@ This code repository is for [Semantic Search Workshop](https://catalog.workshops
 2. Use the Cloudformation template `cfn/semantic-search.yaml` to create CF stack
 3. Cloudformation stack name must be `semantic-search` as we use this stack name in our lab
 4. You can click the following link to deploy CloudFormation Stack
-  |   Region  |   Launch Template |
-  |  ---------------------------   |   -----------------------  |
-  |  ---------------------------   |   -----------------------  |
-  **US East (N. Virginia)**| [![Deploy to AWS](deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateUrl=https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/1e02deca779a4be58b9d50513a464cdc/v1/semanticsearch/semantic-search-v2.yaml&stackName=semantic-search) 
+  
+|   Region  |   Launch Template |
+|  ---------------------------   |   -----------------------  |
+|  ---------------------------   |   -----------------------  |
+|  **US East (N. Virginia)**     | [![Deploy to AWS](deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateUrl=https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/1e02deca779a4be58b9d50513a464cdc/v1/semanticsearch/semantic-search-v2.yaml&stackName=semantic-search) |
 
 
 ### Lab Instruction
