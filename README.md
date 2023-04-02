@@ -33,7 +33,7 @@ There are 6 modues in this workshop:
 
 * **Module 5 - Fine tuning semantic search**: Large language models like BERT show better results when they are trained in-domain, which means fine tuning the general model to fit ones particular business requirements in the domain of its application. You will learn how to fine tune the model for semantic search with the chosen data set.
 
-* **Mudule 6 - Neural Search**: Implement semantic search with (OpenSearch Neural Search Plugin)[https://opensearch.org/docs/latest/search-plugins/neural-search/].
+* **Mudule 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
 
 
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
