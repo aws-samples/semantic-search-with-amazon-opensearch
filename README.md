@@ -18,7 +18,6 @@ This code repository is for [Semantic Search Workshop](https://catalog.workshops
   
 |   Region  |   Launch Template |
 |  ---------------------------   |   -----------------------  |
-|  ---------------------------   |   -----------------------  |
 |  **US East (N. Virginia)**     | [![Deploy to AWS](deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateUrl=https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/1e02deca779a4be58b9d50513a464cdc/v1/semanticsearch/semantic-search-v2.yaml&stackName=semantic-search) |
 
 
