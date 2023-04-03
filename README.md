@@ -38,6 +38,8 @@ There are 6 modues in this workshop:
 
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
+### Note
+In this workshop, we use OpenSearch internal database to store username and password to simplify the lab. However in production env, you should design your security solution per your requirements. For more information , please refer [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) and [Identity and Access Management](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ac.html).
 
 ## License
 
