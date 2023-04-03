@@ -95,7 +95,7 @@ def lambda_handler(event, context):
     sagemaker_endpoint = environ['SM_ENDPOINT']
 
     api_payload = json.loads(event['body'])
-    k = 50
+    k = 30
     payload = api_payload['searchString']
 
     if event['path'] == '/postText':
