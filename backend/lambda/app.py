@@ -23,7 +23,7 @@ def get_features(sm_runtime_client, sagemaker_endpoint, payload):
     return features
 
 
-def get_neighbors(features, es, k_neighbors=50):
+def get_neighbors(features, es, k_neighbors=30):
     idx_name = 'nlp_pqa'
     res = es.search(
         request_timeout=30, index=idx_name,
@@ -37,10 +37,10 @@ def get_neighbors(features, es, k_neighbors=50):
     return results
 
 
-def es_match_query(payload, es, k=50):
+def es_match_query(payload, es, k=30):
     idx_name = 'nlp_pqa'
     search_body = {
-        "size": 50,
+        "size": 30,
         "_source": {
             "excludes": ["question_vector"]
         },
@@ -74,13 +74,14 @@ def lambda_handler(event, context):
 
     session = boto3.session.Session()
     credentials = session.get_credentials()
-    awsauth = AWS4Auth(
-        credentials.access_key,
-        credentials.secret_key,
-        region,
-        service,
-        session_token=credentials.token
-        )
+    # awsauth = AWS4Auth(
+    #     credentials.access_key,
+    #     credentials.secret_key,
+    #     region,
+    #     service,
+    #     session_token=credentials.token
+    #     )
+    awsauth=("master","Semantic123!")
 
     es = Elasticsearch(
         hosts=[{'host': elasticsearch_endpoint, 'port': 443}],

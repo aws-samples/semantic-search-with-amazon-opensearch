@@ -82,7 +82,7 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              AWS: !Ref AWS::AccountId
+              AWS: '*'
             Action: 'es:*'
             Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*/*
       EngineVersion: 'OpenSearch_2.5'
@@ -92,6 +92,20 @@ Resources:
         EBSEnabled: True
         VolumeSize: 20
         VolumeType: 'gp3'
+      AdvancedSecurityOptions:
+        AnonymousAuthEnabled: False
+        Enabled: True
+        InternalUserDatabaseEnabled: True
+        MasterUserOptions:
+          MasterUserName: "master"
+          MasterUserPassword: "Semantic123!"
+      NodeToNodeEncryptionOptions:
+        Enabled: True
+      EncryptionAtRestOptions:
+        Enabled: True
+        KmsKeyId: alias/aws/es
+      DomainEndpointOptions:
+        EnforceHTTPS: True
 
 
 Outputs:
