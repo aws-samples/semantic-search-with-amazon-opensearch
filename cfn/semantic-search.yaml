@@ -98,7 +98,6 @@ Resources:
         InternalUserDatabaseEnabled: True
         MasterUserOptions:
           MasterUserName: "master"
-          MasterUserPassword: "Semantic123!"
       NodeToNodeEncryptionOptions:
         Enabled: True
       EncryptionAtRestOptions:
