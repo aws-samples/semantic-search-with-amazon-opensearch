@@ -36,6 +36,8 @@ There are 6 modues in this workshop:
 * **Mudule 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
 
 
+7. **Module 7 - Retrieval Augmented Generation**: Use semantic search result as context, combine the user input and context as prompt for large language models to generate factual content for knowledge intensive applications.
+
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
 ### Note
