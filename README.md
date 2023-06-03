@@ -43,6 +43,10 @@ Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-s
 ### Note
 In this workshop, we use OpenSearch internal database to store username and password to simplify the lab. However in production env, you should design your security solution per your requirements. For more information , please refer [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) and [Identity and Access Management](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ac.html).
 
+## Feedback
+
+If you have any questions or feedback, please reach us by sending email to [semantic-search@amazon.com](mailto:semantic-search@amazon.com).
+
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
