@@ -30,13 +30,9 @@ Resources:
                   - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*
               - Effect: Allow
                 Action:
-                  - "s3:GetObject"
-                  - "s3:PutObject"
-                  - "s3:DeleteObject"
-                  - "s3:PutObjectAcl"
+                  - "s3:*"
                 Resource:
-                  - !Sub arn:aws:s3:::${s3BucketTraining}/*
-                  - !Sub arn:aws:s3:::${s3BucketHosting}/*
+                  - "*"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
         - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
@@ -98,6 +94,7 @@ Resources:
         InternalUserDatabaseEnabled: True
         MasterUserOptions:
           MasterUserName: "master"
+          MasterUserPassword: "Semantic123!"
       NodeToNodeEncryptionOptions:
         Enabled: True
       EncryptionAtRestOptions:
