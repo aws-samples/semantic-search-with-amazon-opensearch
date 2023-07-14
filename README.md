@@ -22,7 +22,7 @@ This code repository is for [Semantic Search Workshop](https://catalog.workshops
 
 
 ### Lab Instruction
-There are 6 modues in this workshop:
+There are 6 modules in this workshop:
 * **Module 1 - Search basics**: You will learn fundamentals of text search and semantic search. This section also introduces differences between a best matching algorithm, popularly known as BM25 similarity and semantic similarity.
 
 * **Module 2 -Text search**: You will learn text search with Amazon OpenSearch Service. In information retrieval this type of searching is traditionally called 'Keyword' search.
