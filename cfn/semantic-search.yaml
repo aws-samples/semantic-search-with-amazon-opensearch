@@ -81,9 +81,9 @@ Resources:
               AWS: '*'
             Action: 'es:*'
             Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*/*
-      EngineVersion: 'OpenSearch_2.5'
+      EngineVersion: 'OpenSearch_2.7'
       ClusterConfig:
-        InstanceType: "r6g.xlarge.search"
+        InstanceType: "r6g.2xlarge.search"
       EBSOptions:
         EBSEnabled: True
         VolumeSize: 20
