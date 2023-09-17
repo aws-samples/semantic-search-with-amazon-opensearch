@@ -5,9 +5,17 @@ This repository guides users through creating a semantic search using Amazon Sag
 
 ## How does it work?
 
-This code repository is for [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US). For more information about semantic search, please refer the workshop content.
+This code repository is for [Semantic and Vector Search with Amazon OpenSearch Service Workshop](https://catalog.workshops.aws/semantic-search/en-US). For more information about semantic search, please refer the workshop content.
 
-![diagram](./semantic_search_fullstack.jpg)
+### Semantic Search Architecture
+![semantic_search_fullstack](./semantic_search_fullstack.jpg)
+
+### Rereieval Augmented Generation Architecture
+![rag](./rag.png)
+
+### Converational Search Architecture
+![converstational-search](./converstational-search.png)
+
 
 ### CloudFormation Deployment
 
