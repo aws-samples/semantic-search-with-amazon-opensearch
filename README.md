@@ -43,11 +43,11 @@ There are 6 modules in this workshop:
 
 * **Mudule 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
 
-7. **Retrieval Augmented Generation**: Use semantic search result as context, combine the user input and context as prompt for large language models to generate factual content for knowledge intensive applications.
+* **Retrieval Augmented Generation**: Use semantic search result as context, combine the user input and context as prompt for large language models to generate factual content for knowledge intensive applications.
 
-8. **Conversational Search**: Search with history context while leveraging RAG.
+* **Conversational Search**: Search with history context while leveraging RAG.
 
-9. **QA over Your Knowledge Base**: End to end demo on how to implement conversational search over your knowledge base. 
+* **QA over Your Knowledge Base**: End to end demo on how to implement conversational search over your knowledge base. 
 
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
