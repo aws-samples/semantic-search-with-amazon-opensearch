@@ -29,4 +29,4 @@ Bundle the code for Lambda deployment.
 ```bash
 ./bundle.sh
 ```
-This will create two lambda packages inside generative-ai/Module_1_Chat_With_PDF/dist directory as lambda.zip and lambda_s3.zip
+This will create two lambda .zip packages and webapp .zip package inside generative-ai/Module_1_Chat_With_PDF directory as lambda.zip, lambda_s3.zip and webapp.zip respectively.

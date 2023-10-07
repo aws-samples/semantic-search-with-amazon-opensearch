@@ -10,5 +10,7 @@ pip install -I openai -t dist
 # remove extraneous bits from installed packages
 rm -r dist/*.dist-info
 cp config.py chain.py main.py chain_s3.py main_s3.py dist/
-cd dist && zip -r lambda.zip *
-zip -r lambda_s3.zip * -x lambda.zip
+cd dist && zip -r ../lambda.zip *
+zip -r ../lambda_s3.zip * -x lambda.zip
+rm -rf dist
+cd webapp && zip -r ../webapp.zip *

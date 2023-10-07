@@ -4,9 +4,11 @@ from urllib.parse import urlparse, urlencode, parse_qs
 import re
 
 import requests
+import boto3
 from boto3 import Session
 from botocore.auth import SigV4Auth
 from botocore.awsrequest import AWSRequest
+import botocore.session
 
 
 def signing_headers(method, url_string, body):
@@ -21,8 +23,11 @@ def signing_headers(method, url_string, body):
     safe_url = url.scheme + '://' + url.netloc.split(
         ':')[0] + path + querystring
     request = AWSRequest(method=method.upper(), url=safe_url, data=body)
-    SigV4Auth(Session().get_credentials(), "execute-api",
-              region).add_auth(request)
+
+    session = botocore.session.Session()
+    sigv4 = SigV4Auth(session.get_credentials(), "execute-api", region)
+    sigv4.add_auth(request)
+
     return dict(request.headers.items())
 
 
@@ -32,7 +37,9 @@ def call(prompt: str, session_id: str):
         "session_id": session_id
     })
     method = "post"
-    url = "<your-api-endpoint>"
-    r = requests.post(url, headers=signing_headers(method, url, body), data=body)
+    url = "API_URL_TO_BE_REPLACED"
+    #https://API_URL_TO_BE_REPLACED.execute-api.us-east-1.amazonaws.com/prod/lambda
+    r = requests.post(url, headers={"Content-Type": "application/json; charset=utf-8"}, data=body)
     response = json.loads(r.text)
+    print(response)
     return response
