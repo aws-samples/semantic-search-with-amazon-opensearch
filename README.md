@@ -30,7 +30,7 @@ This code repository is for [Semantic and Vector Search with Amazon OpenSearch S
 
 
 ### Lab Instruction
-There are 6 modules in this workshop:
+There are 9 modules in this workshop:
 * **Module 1 - Search basics**: You will learn fundamentals of text search and semantic search. This section also introduces differences between a best matching algorithm, popularly known as BM25 similarity and semantic similarity.
 
 * **Module 2 -Text search**: You will learn text search with Amazon OpenSearch Service. In information retrieval this type of searching is traditionally called 'Keyword' search.
@@ -41,13 +41,13 @@ There are 6 modules in this workshop:
 
 * **Module 5 - Fine tuning semantic search**: Large language models like BERT show better results when they are trained in-domain, which means fine tuning the general model to fit ones particular business requirements in the domain of its application. You will learn how to fine tune the model for semantic search with the chosen data set.
 
-* **Mudule 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
+* **Module 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
 
-* **Mudule 7 - Retrieval Augmented Generation**: Use semantic search result as context, combine the user input and context as prompt for large language models to generate factual content for knowledge intensive applications.
+* **Module 7 - Retrieval Augmented Generation**: Use semantic search result as context, combine the user input and context as prompt for large language models to generate factual content for knowledge intensive applications.
 
-* **Mudule 8 - Conversational Search**: Search with history context while leveraging RAG.
+* **Module 8 - Conversational Search**: Search with history context while leveraging RAG.
 
-* **Mudule 9 - QA over Your Knowledge Base**: End to end demo on how to implement conversational search over your knowledge base. 
+* **Module 9 - QA over Your Knowledge Base**: End to end demo on how to implement conversational search over your knowledge base. 
 
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
