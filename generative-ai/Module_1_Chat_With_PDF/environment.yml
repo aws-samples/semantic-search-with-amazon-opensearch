@@ -1,0 +1,9 @@
+name: conversational-search-with-opensearch-service
+channels:
+  - https://conda.anaconda.org/conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - aws-cdk-lib
+    - streamlit

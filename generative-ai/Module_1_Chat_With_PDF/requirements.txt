@@ -1,0 +1,5 @@
+langchain==0.0.308
+requests
+boto3==1.28.59
+opensearch-py
+PyPDF2
