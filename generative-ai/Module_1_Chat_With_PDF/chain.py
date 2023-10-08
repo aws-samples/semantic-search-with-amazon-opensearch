@@ -229,15 +229,29 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
 
     content_handler = ContentHandler()
 
-    params = {
-        "max_new_tokens": 128,
-        "num_return_sequences": 1,
-        "top_k": 200,
-        "top_p": 0.9,
-        "do_sample": False,
-        "return_full_text": False,
-        "temperature": 0.0001
-        }
+
+    if(('cpu'.upper()) in (LLM_ENDPOINT.upper())):
+        params = {
+            "max_new_tokens": 128,
+            "num_return_sequences": 1,
+            "top_k": 200,
+            "top_p": 0.9,
+            "do_sample": False,
+            "return_full_text": False,
+            "temperature": 0.0001
+            }
+    else:
+        params = {
+            "max_length": 4096,
+            "max_new_tokens": 1024,
+            "num_return_sequences": 1,
+            "top_k": 100,
+            "top_p": 0.95,
+            "do_sample": False,
+            "return_full_text": False,
+            "temperature": 0.01
+            }
+    
     
     llm=SagemakerEndpoint(
         endpoint_name=LLM_ENDPOINT,
