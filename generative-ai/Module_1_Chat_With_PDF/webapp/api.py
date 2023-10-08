@@ -28,8 +28,13 @@ def signing_headers(method, url_string, body):
     sigv4 = SigV4Auth(session.get_credentials(), "lambda", region)
     sigv4.add_auth(request)
 
-    return dict(request.headers.items())
+    header_ = dict(request.headers.items())
+    
+    header_["Content-Type"] = "application/json; charset=utf-8"
+    
+    print(header_)
 
+    return dict(header_)
 
 def call(prompt: str, session_id: str):
     body = json.dumps({
@@ -39,7 +44,7 @@ def call(prompt: str, session_id: str):
     method = "post"
     url = "API_URL_TO_BE_REPLACED"
     #https://API_URL_TO_BE_REPLACED.execute-api.us-east-1.amazonaws.com/prod/lambda
-    r = requests.post(url, headers={"Content-Type": "application/json; charset=utf-8"}, data=body)
+    r = requests.post(url, headers= signing_headers(method,url,body), data=body)
     #{"Content-Type": "application/json; charset=utf-8"}
     #signing_headers(method,url,body)
     response = json.loads(r.text)
