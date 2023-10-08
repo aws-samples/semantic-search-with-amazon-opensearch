@@ -6,6 +6,18 @@ Lambda handler that processes the incoming request and calls the LLM chain to ge
 ### chain.py
 The LLM chain code that calls the LLM with the input from the user.
 
+### main_s3.py
+Lambda handler that processes the document chunks
+
+### chain_s3.py
+The Langchain code that inserts documents into opensearch from s3
+
+### conversational_search_full_stack_with_gpu.yaml
+This is the full stack that deploys the entire chat applicatiom in your own account
+
+### webapp directory
+This folder has all code to deploy the front end for chat inteface on ec2 using streamlit module.
+
 ## Packaging the Lambda functions
 
 Clone the repository
