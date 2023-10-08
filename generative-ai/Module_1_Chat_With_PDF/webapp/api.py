@@ -12,7 +12,7 @@ import botocore.session
 
 
 def signing_headers(method, url_string, body):
-    region = re.search("execute-api.(.*).amazonaws.com", url_string).group(1)
+    region = 'us-east-1'
     url = urlparse(url_string)
     path = url.path or '/'
     querystring = ''
@@ -25,7 +25,7 @@ def signing_headers(method, url_string, body):
     request = AWSRequest(method=method.upper(), url=safe_url, data=body)
 
     session = botocore.session.Session()
-    sigv4 = SigV4Auth(session.get_credentials(), "execute-api", region)
+    sigv4 = SigV4Auth(session.get_credentials(), "lambda", region)
     sigv4.add_auth(request)
 
     return dict(request.headers.items())
@@ -40,6 +40,8 @@ def call(prompt: str, session_id: str):
     url = "API_URL_TO_BE_REPLACED"
     #https://API_URL_TO_BE_REPLACED.execute-api.us-east-1.amazonaws.com/prod/lambda
     r = requests.post(url, headers={"Content-Type": "application/json; charset=utf-8"}, data=body)
+    #{"Content-Type": "application/json; charset=utf-8"}
+    #signing_headers(method,url,body)
     response = json.loads(r.text)
     print(response)
     return response
