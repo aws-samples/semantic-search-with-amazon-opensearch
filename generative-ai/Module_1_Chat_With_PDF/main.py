@@ -21,6 +21,10 @@ def handler(event, context):
 
     prompt = body['prompt']
     session_id = (body["session_id"]).strip()
+   
+
+
+
 
     print(f"prompt is {prompt}")
     print(f"session_id is {session_id}")

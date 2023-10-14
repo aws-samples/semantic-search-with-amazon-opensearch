@@ -118,8 +118,7 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
     from typing import List
     from langchain.embeddings import SagemakerEndpointEmbeddings
     from langchain.embeddings.sagemaker_endpoint import EmbeddingsContentHandler
-    from langchain.embeddings.sagemaker_endpoint import EmbeddingsContentHandler
-
+    
     class SagemakerEndpointEmbeddingsJumpStart(SagemakerEndpointEmbeddings):
         def embed_documents(
             self, texts: List[str], chunk_size: int = 5
@@ -242,7 +241,6 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
             }
     else:
         params = {
-            "max_length": 4096,
             "max_new_tokens": 1024,
             "num_return_sequences": 1,
             "top_k": 100,
