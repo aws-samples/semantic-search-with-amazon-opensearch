@@ -42,8 +42,8 @@ def call(prompt: str, session_id: str):
         "session_id": session_id
     })
     method = "post"
-    url = "API_URL_TO_BE_REPLACED"
-    #https://API_URL_TO_BE_REPLACED.execute-api.us-east-1.amazonaws.com/prod/lambda
+    url = "https://6ssuypl2tj3k5v7x4tgh2zlbbm0ukude.lambda-url.us-east-1.on.aws/"
+    #https://$query_invoke_URL_cmd.execute-api.us-east-1.amazonaws.com/prod/lambda
     r = requests.post(url, headers= signing_headers(method,url,body), data=body)
     #{"Content-Type": "application/json; charset=utf-8"}
     #signing_headers(method,url,body)
