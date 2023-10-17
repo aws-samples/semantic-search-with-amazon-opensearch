@@ -10,11 +10,11 @@ This code repository is for [Semantic and Vector Search with Amazon OpenSearch S
 ### Semantic Search Architecture
 ![semantic_search_fullstack](./semantic_search_fullstack.jpg)
 
-### Rereieval Augmented Generation Architecture
+### Retrieval Augmented Generation Architecture
 ![rag](./rag.png)
 
-### Converational Search Architecture
-![converstational-search](./converstational-search.png)
+### Conversational Search Architecture
+![conversational-search](./converstational-search.png)
 
 
 ### CloudFormation Deployment
@@ -37,9 +37,9 @@ There are 9 modules in this workshop:
 
 * **Module 3 - Semantic search**: You will learn semantic search with Amazon OpenSearch Service and Amazon SageMaker. You will use a machine learning technique called Bidirectional Encoder Representations from transformers, popularly known as BERT. BERT uses a pre-trained natural language processing (NLP) model that represents text in the form numbers or in other words, vectors. You will learn to use vectors with kNN feature in Amazon OpenSearch Service.
 
-* **Module 4 - Fullstack semantic search**: You will bring together all the concepts learnt earlier with an user interface that shows the advantages of using semantic search with text search. You will be using Amazon OpenSearch Service, Amazon SageMaker, AWS Lambda, Amazon API Gateway and Amazon S3 for this purpose.
+* **Module 4 - Fullstack semantic search**: You will bring together all the concepts learnt earlier with a user interface that shows the advantages of using semantic search with text search. You will be using Amazon OpenSearch Service, Amazon SageMaker, AWS Lambda, Amazon API Gateway and Amazon S3 for this purpose.
 
-* **Module 5 - Fine tuning semantic search**: Large language models like BERT show better results when they are trained in-domain, which means fine tuning the general model to fit ones particular business requirements in the domain of its application. You will learn how to fine tune the model for semantic search with the chosen data set.
+* **Module 5 - Fine-tuning semantic search**: Large language models like BERT show better results when they are trained in-domain, which means fine-tuning the general model to fit ones particular business requirements in the domain of its application. You will learn how to fine tune the model for semantic search with the chosen data set.
 
 * **Module 6 - Neural Search**: Implement semantic search with [OpenSearch Neural Search Plugin](https://opensearch.org/docs/latest/search-plugins/neural-search/).
 
@@ -52,7 +52,7 @@ There are 9 modules in this workshop:
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
 ### Note
-In this workshop, we use OpenSearch internal database to store username and password to simplify the lab. However in production env, you should design your security solution per your requirements. For more information , please refer [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) and [Identity and Access Management](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ac.html).
+In this workshop, we use OpenSearch internal database to store username and password to simplify the lab. However, in production env, you should design your security solution per your requirements. For more information , please refer [Fine-grained access control](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html) and [Identity and Access Management](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ac.html).
 
 ## Feedback
 
