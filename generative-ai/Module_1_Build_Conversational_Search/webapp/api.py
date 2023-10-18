@@ -12,7 +12,7 @@ import botocore.session
 
 
 def signing_headers(method, url_string, body):
-    region = 'us-east-1'
+    region = url_string.split(".")[2]
     url = urlparse(url_string)
     path = url.path or '/'
     querystring = ''
@@ -42,7 +42,7 @@ def call(prompt: str, session_id: str):
         "session_id": session_id
     })
     method = "post"
-    url = "https://6ssuypl2tj3k5v7x4tgh2zlbbm0ukude.lambda-url.us-east-1.on.aws/"
+    url = "https://irwd3ajn4e4nydsz6itrjq2whe0ibler.lambda-url.us-west-2.on.aws/"
     #https://$query_invoke_URL_cmd.execute-api.us-east-1.amazonaws.com/prod/lambda
     r = requests.post(url, headers= signing_headers(method,url,body), data=body)
     #{"Content-Type": "application/json; charset=utf-8"}

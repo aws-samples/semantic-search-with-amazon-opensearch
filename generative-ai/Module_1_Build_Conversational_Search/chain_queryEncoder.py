@@ -37,6 +37,7 @@ LLM_ENDPOINT = os.environ['LLMEndpointName']
 DOMAIN_ENDPOINT = os.environ['OpenSearchDomainEndpoint']
 DOMAIN_INDEX = "llm_apps_workshop_embeddings"
 DYNAMO_DB_TABLE = os.environ['DynamoDBTableName']
+REGION = os.environ['aws_region']
 
 import boto3
 
@@ -170,7 +171,7 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
         
     embeddings = SagemakerEndpointEmbeddingsJumpStart( 
             endpoint_name=EMBEDDING_ENDPOINT,
-            region_name='us-east-1', 
+            region_name=REGION, 
             content_handler=ContentHandler()
         )
 
@@ -261,7 +262,7 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
     llm=SagemakerEndpoint(
         endpoint_name=LLM_ENDPOINT,
         #credentials_profile_name="credentials-profile-name",
-        region_name="us-east-1",
+        region_name=REGION,
         model_kwargs=params,
         content_handler=content_handler,
     )
