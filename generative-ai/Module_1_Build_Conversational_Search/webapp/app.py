@@ -142,7 +142,7 @@ with st.sidebar:
 
     # Initialize boto3 to use the S3 client.
     s3_client = boto3.resource('s3')
-    bucket=s3_client.Bucket('semantic-search-s3buckethosting-1ll7rr05d03dv')
+    bucket=s3_client.Bucket('pdf-repo-uploads')
 
     objects = bucket.objects.filter(Prefix="sample_pdfs/")
     urls = []
@@ -156,7 +156,7 @@ with st.sidebar:
             s3_presigned_url = client.generate_presigned_url(
                 ClientMethod='get_object',
                 Params={
-                    'Bucket': 'semantic-search-s3buckethosting-1ll7rr05d03dv',
+                    'Bucket': 'pdf-repo-uploads',
                     'Key': obj.key
                 },
                 ExpiresIn=3600
@@ -175,10 +175,10 @@ with st.sidebar:
             for pdf_doc in pdf_docs:
                 print(type(pdf_doc))
                 pdf_doc_name = (pdf_doc.name).replace(" ","_")
-                print("aws s3 cp pdfs"+pdf_doc_name+" s3://semantic-search-s3buckethosting-1ll7rr05d03dv")
+                print("aws s3 cp pdfs"+pdf_doc_name+" s3://pdf-repo-uploads")
                 with open(os.path.join("/home/ec2-user/pdfs",pdf_doc_name),"wb") as f: 
                     f.write(pdf_doc.getbuffer())  
-                    os.system("aws s3 cp /home/ec2-user/pdfs/"+pdf_doc_name+" s3://semantic-search-s3buckethosting-1ll7rr05d03dv")
-                request_ = '{ "bucket": "semantic-search-s3buckethosting-1ll7rr05d03dv","key": "'+pdf_doc_name+'" }'
+                    os.system("aws s3 cp /home/ec2-user/pdfs/"+pdf_doc_name+" s3://pdf-repo-uploads")
+                request_ = '{ "bucket": "pdf-repo-uploads","key": "'+pdf_doc_name+'" }'
                 os.system("aws lambda invoke --function-name documentEncoder --cli-binary-format raw-in-base64-out --payload '"+request_+"' response.json")
         st.success('you can start searching on your PDF')
