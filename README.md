@@ -30,7 +30,7 @@ This code repository is for [Semantic and Vector Search with Amazon OpenSearch S
 
 
 ### Lab Instruction
-There are 9 modules in this workshop:
+There are 8 modules in this workshop:
 * **Module 1 - Search basics**: You will learn fundamentals of text search and semantic search. This section also introduces differences between a best matching algorithm, popularly known as BM25 similarity and semantic similarity.
 
 * **Module 2 -Text search**: You will learn text search with Amazon OpenSearch Service. In information retrieval this type of searching is traditionally called 'Keyword' search.
@@ -47,7 +47,6 @@ There are 9 modules in this workshop:
 
 * **Module 8 - Conversational Search**: Search with history context while leveraging RAG.
 
-* **Module 9 - QA over Your Knowledge Base**: End to end demo on how to implement conversational search over your knowledge base. 
 
 Please refer [Semantic Search Workshop](https://catalog.workshops.aws/semantic-search/en-US) for lab instruction.
 
