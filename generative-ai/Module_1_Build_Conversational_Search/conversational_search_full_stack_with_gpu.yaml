@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Template to provision RAG stack with OpenSearch as vector DB
+Description: Template to provision OpenSearch cluster and SageMaker Notebook for semantic search
+
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -31,8 +32,7 @@ Metadata:
       
 Parameters:
   ImageId:
-    Type: String
-    Description: 'Linux 2 AMI for Ireland eu-west1 Region'
+    Type:  String
     Default: 'ami-08a52ddb321b32a8c'
   InstanceType:
     Type: String
@@ -130,10 +130,36 @@ Resources:
                   - "dynamodb:*"
                 Resource:
                   - "*"
+              - Effect: Allow
+                Action:
+                  - "secretsmanager:GetSecretValue"
+                Resource:
+                  - !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*      
+        - PolicyName: lambda-ssm-full-access 
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "lambda:*"
+                Resource:
+                  - "*"
+              - Effect: Allow
+                Action:
+                  - "ssm:*"
+                Resource:
+                  - "*"
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
         - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
         - arn:aws:iam::aws:policy/TranslateReadOnly
+        - arn:aws:iam::aws:policy/AmazonEC2FullAccess
+        - arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess
+        - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+        - arn:aws:iam::aws:policy/AWSLambda_FullAccess
+        - arn:aws:iam::aws:policy/AWSLambdaExecute
+        - arn:aws:iam::aws:policy/IAMFullAccess
+        - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+        
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -180,6 +206,21 @@ Resources:
                   - "ecr:CreateRepository"
                   - "ecr:GetAuthorizationToken"
                   - "ec2:DescribeAvailabilityZones"
+                Resource: "*"
+              - Sid: BedrockSageMakerAccess
+                Effect: Allow
+                Action:
+                  - "bedrock:*"
+                Resource: "*"
+              - Sid: SageMakerAccess
+                Effect: Allow
+                Action:
+                  - "sagemaker:*"
+                Resource: "*"
+              - Sid: S3Access
+                Effect: Allow
+                Action:
+                  - "s3:*"
                 Resource: "*"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
@@ -229,7 +270,7 @@ Resources:
               AWS: '*'
             Action: 'es:*'
             Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*/*
-      EngineVersion: 'OpenSearch_2.7'
+      EngineVersion: 'OpenSearch_2.9'
       ClusterConfig:
         InstanceType: "r6g.2xlarge.search"
       EBSOptions:
@@ -425,13 +466,11 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
       TableName: conversation-history-memory
-    UpdateReplacePolicy: Retain
-    DeletionPolicy: Retain
 
   LLMurl:
     Type: AWS::Lambda::Url
     Properties: 
-      AuthType: NONE
+      AuthType: AWS_IAM
       Cors: 
           AllowCredentials: True
           AllowMethods: 
@@ -448,8 +487,8 @@ Resources:
     Properties: 
       Action: lambda:InvokeFunctionUrl
       FunctionName: !Ref LLMAppFunction
-      FunctionUrlAuthType: 'NONE'
-      Principal: '*'
+      FunctionUrlAuthType: 'AWS_IAM'
+      Principal: !Ref 'AWS::AccountId' 
       
 
   LLMAppFunction:
@@ -460,7 +499,7 @@ Resources:
       Runtime: python3.9
       Code:
         S3Bucket: ws-assets-prod-iad-r-iad-ed304a55c2ca1aee
-        S3Key: df655552-1e61-4a6b-9dc4-c03eb94c6f75/assets/lambda.zip
+        S3Key: 2108cfcf-6cd6-4613-83c0-db4e55998757/lambda.zip
       Handler: main.handler
       MemorySize: 10240
       Timeout: 600
@@ -492,7 +531,7 @@ Resources:
       Runtime: python3.9
       Code:
         S3Bucket: ws-assets-prod-iad-r-iad-ed304a55c2ca1aee
-        S3Key: df655552-1e61-4a6b-9dc4-c03eb94c6f75/assets/lambda_s3.zip
+        S3Key: 2108cfcf-6cd6-4613-83c0-db4e55998757/lambda_s3.zip
       Handler: main_s3.handler
       MemorySize: 10240
       Timeout: 600
@@ -590,11 +629,10 @@ Resources:
               sudo yum install zip
               sudo yum -y install git
               mkdir /home/ec2-user/semantic-search-with-amazon-opensearch
-              git clone https://github.com/aws-samples/amazon-sagemaker-bert-finetuning-for-search/ /home/ec2-user/semantic-search-with-amazon-opensearch
-              aws s3 cp /home/ec2-user/semantic-search-with-amazon-opensearch/rag/ s3://${s3Bucket} --recursive
-              aws s3 cp s3://${s3Bucket}/webapp.zip /home/ec2-user
+              aws s3 cp s3://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee/2108cfcf-6cd6-4613-83c0-db4e55998757/webapp.zip /home/ec2-user
               unzip /home/ec2-user/webapp.zip -d /home/ec2-user
               sudo chmod -R 0777 /home/ec2-user/pdfs
+              aws s3 cp /home/ec2-user/pdfs s3://${s3Bucket}/sample_pdfs/ --recursive
               sed -i 's/API_URL_TO_BE_REPLACED/${appurl}/g' /home/ec2-user/api.py
               sed -i 's/pdf-repo-uploads/${s3Bucket}/g' /home/ec2-user/app.py
               python3 -m venv /home/ec2-user/.env
@@ -606,6 +644,7 @@ Resources:
                         - '\/'
                         - !Split [ "/", !GetAtt LLMurl.FunctionUrl]
               s3Bucket: !Ref s3BucketTraining
+
 
   DemoSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
