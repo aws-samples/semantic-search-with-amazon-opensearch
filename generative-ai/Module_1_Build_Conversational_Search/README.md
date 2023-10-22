@@ -1,15 +1,15 @@
 ## Code organization
 
-### main.py
+### main_queryEncoder.py
 Lambda handler that processes the incoming request and calls the LLM chain to generate a reply. 
 
-### chain.py
+### chain_queryEncoder.py
 The LLM chain code that calls the LLM with the input from the user.
 
-### main_s3.py
+### main_documentEncoder.py
 Lambda handler that processes the document chunks
 
-### chain_s3.py
+### chain_documentEncoder.py
 The Langchain code that inserts documents into opensearch from s3
 
 ### conversational_search_full_stack_with_gpu.yaml
