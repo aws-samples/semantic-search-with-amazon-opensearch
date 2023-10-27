@@ -1,3 +1,0 @@
-requests
-elasticsearch==7.10
-requests-aws4auth
