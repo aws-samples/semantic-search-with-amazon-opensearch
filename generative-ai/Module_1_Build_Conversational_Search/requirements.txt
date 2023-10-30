@@ -1,4 +1,4 @@
-langchain==0.0.308
+langchain==0.0.325
 requests
 boto3==1.28.59
 opensearch-py
