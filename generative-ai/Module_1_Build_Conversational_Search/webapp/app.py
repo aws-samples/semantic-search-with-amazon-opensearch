@@ -56,14 +56,14 @@ if "input_searchType" not in st.session_state:
 # if "input_temperature" not in st.session_state:
 #     st.session_state.input_temperature = "0.001"
 
-if "input_topK" not in st.session_state:
-    st.session_state.input_topK = 200
+# if "input_topK" not in st.session_state:
+#     st.session_state.input_topK = 200
 
-if "input_topP" not in st.session_state:
-    st.session_state.input_topP = 0.95
+# if "input_topP" not in st.session_state:
+#     st.session_state.input_topP = 0.95
 
-if "input_maxTokens" not in st.session_state:
-    st.session_state.input_maxTokens = 1024
+# if "input_maxTokens" not in st.session_state:
+#     st.session_state.input_maxTokens = 1024
 
 
 def write_logo():
