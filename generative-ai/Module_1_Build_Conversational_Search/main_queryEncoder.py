@@ -28,6 +28,11 @@ def handler(event, context):
 
     print(f"prompt is {prompt}")
     print(f"session_id is {session_id}")
+
+    print(type(prompt))
+
+    if(type(prompt) == 'dict'):
+        prompt = json.dumps(prompt)
     
     response, session_id = chain_queryEncoder.run(
         api_key=get_api_key(), 

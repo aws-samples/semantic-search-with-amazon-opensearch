@@ -6,7 +6,7 @@ import os
 
 from langchain import ConversationChain,PromptTemplate, LLMChain
 from langchain.memory import ConversationBufferMemory, DynamoDBChatMessageHistory,ConversationBufferWindowMemory
-from langchain.prompts import (
+from langchain.prompts import (PromptTemplate,
     ChatPromptTemplate, 
     MessagesPlaceholder, 
     SystemMessagePromptTemplate, 
@@ -61,6 +61,14 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
     Returns:
         The prediction from LLM
     """
+    import json
+    input_ = json.loads(prompt)
+    question_ = input_["text"]
+    searchType_ = input_["searchType"]
+    temperature_ = float(input_["temperature"])
+    topK_ = input_["topK"]
+    topP_ = input_["topP"]
+    maxTokens_ = input_["maxTokens"]
     
     if not session_id.strip():
         print('no session id')
@@ -188,30 +196,29 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
                                        opensearch_url=os_domain_ep,
                                        http_auth=(DOMAIN_ADMIN_UNAME, DOMAIN_ADMIN_PW)   ) 
     
-    openSearch_retriever = openSearch_.as_retriever(
-    search_type="similarity_score_threshold",
-    search_kwargs={
-        'k': 2,
-        'score_threshold': 0.7
-    }
-)
+    openSearch_retriever = openSearch_.as_retriever()
+    # search_type="similarity_score_threshold",
+    #  search_kwargs={
+    #      'k': 2,
+    #     'score_threshold': 0.7
+    #  }
 
-    #Only using OpenSearch 
-    docs_ = openSearch_.similarity_search(prompt)
-    print("opensearch results:"+docs_[0].page_content)
+
+ 
+    
 
     #openAI LLM
     #llm = ChatOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
 
-    prompt_template = """Use the following pieces of context to answer the question at the end.
+    # prompt_template = """Use the following pieces of context to answer the question at the end.
 
-    {context}
+    # {context}
 
-    Question: {question}
-    Answer:"""
-    PROMPT = PromptTemplate(
-        template=prompt_template, input_variables=["context", "question"]
-    )
+    # Question: {question}
+    # Answer:"""
+    # PROMPT = PromptTemplate(
+    #     template=prompt_template, input_variables=["context", "question"]
+    # )
 
     #Sagemaker Falcon XL LLM
     class ContentHandler(LLMContentHandler):
@@ -249,13 +256,13 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
             }
     else:
         params = {
-            "max_new_tokens": 1024,
+            "max_new_tokens": maxTokens_,
             "num_return_sequences": 1,
-            "top_k": 100,
-            "top_p": 0.95,
+            "top_k": topK_,
+            "top_p": topP_,
             "do_sample": False,
             "return_full_text": False,
-            "temperature": 0.01
+            "temperature": temperature_
             }
     
     
@@ -283,9 +290,43 @@ def run(api_key: str, session_id: str, prompt: str) -> Tuple[str, str]:
     # prompt=PROMPT,
     # )
     
-   
-    print("Only OpenSearch as retriever=true")
-    response = qa.run( prompt) # docs_[0].page_content # chain({"input_documents": docs_, "question": prompt}, return_only_outputs=True)
+    prompt_template = """Answer the question with the best of your knowledge, if there are no relevant answers, please answer as 'I don't know'
+
+
+    Question: {question}
+    Answer:"""
+    PROMPT = PromptTemplate(
+        template=prompt_template, input_variables=[ "question"]
+    )
+
+    #PROMPT=PromptTemplate.from_template(prompt_template)
+    
+
+    if(searchType_ == "OpenSearch vector search"):
+        print("Only OpenSearch as retriever=true")
+        docs_ = openSearch_.similarity_search(json.loads(prompt)["text"])
+        print("opensearch results:"+docs_[0].page_content)
+        response = docs_[0].page_content
+    else:
+        if(searchType_ == "Conversational Search (RAG)"):
+            print("OpenSearch and LLM as RAG")
+            response = qa.run( json.loads(prompt)["text"])
+        else:
+            print("Only LLM as generator=true")
+            chain = LLMChain(
+                    llm=llm,
+                    prompt=PROMPT,
+                    )
+            
+            result = chain({ "question": json.loads(prompt)["text"]}, return_only_outputs=True)
+            response = result['text']
+            print("responsetype")
+            print(response)
+
+
+
+
+     # docs_[0].page_content # chain({"input_documents": docs_, "question": prompt}, return_only_outputs=True)
     print("response from agent")
     print("response:"+response)
     print("response:"+session_id)
