@@ -10,10 +10,10 @@ This code repository is for [Semantic and Vector Search with Amazon OpenSearch S
 ### Semantic Search Architecture
 ![semantic_search_fullstack](./semantic_search_fullstack.jpg)
 
-### Rereieval Augmented Generation Architecture
+### Retrieval Augmented Generation Architecture
 ![rag](./rag.png)
 
-### Converational Search Architecture
+### Conversational Search Architecture
 ![converstational-search](./converstational-search.png)
 
 
