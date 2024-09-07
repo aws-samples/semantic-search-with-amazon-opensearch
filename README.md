@@ -21,7 +21,7 @@ The data flow is like following:
   
 |   Region  |   Launch Template |
 |  ---------------------------   |   -----------------------  |
-|  **US East (N. Virginia)**     | [![Deploy to AWS](deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateUrl=https://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee.s3.us-east-1.amazonaws.com/df655552-1e61-4a6b-9dc4-c03eb94c6f75/generative-ai-powered-search.yaml&stackName=generative-ai-powered-search) |
+|  **US East (N. Virginia)**     | [![Deploy to AWS](./static/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateUrl=https://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee.s3.us-east-1.amazonaws.com/df655552-1e61-4a6b-9dc4-c03eb94c6f75/generative-ai-powered-search.yaml&stackName=generative-ai-powered-search) |
 
 
 
