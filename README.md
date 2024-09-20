@@ -8,11 +8,6 @@ This repository guides users through creating a generative AI powered search wit
 ![generative ai powered search](./static/architecture.png)
 
 
-The data flow is like following:
-![generative ai powered search data flow](./static/data-flow.png)
-
-
-
 
 ### CloudFormation Deployment
 
