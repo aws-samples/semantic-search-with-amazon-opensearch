@@ -3,9 +3,13 @@
 This repository guides users through creating a generative AI powered search with Amazon OpenSearch services, Amazon Bedrock.
 
 
+### AI agent components
 
-### Generative AI powered search architecture
-![generative ai powered search](./static/architecture.png)
+![ai agent components](./static/ai-agent-components.png)
+
+### AI agent powered search reference architecture
+
+![AI agent powered search reference architecture](./static/ai-agent-search-ref-arch.png)
 
 
 
