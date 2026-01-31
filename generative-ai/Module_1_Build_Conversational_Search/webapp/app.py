@@ -3,6 +3,7 @@ import uuid
 import os
 import re
 import subprocess
+import html
 import boto3
 import requests
 import api
@@ -151,8 +152,8 @@ def write_user_message(md):
         st.image(USER_ICON, use_column_width='always')
     with col2:
         #st.warning(md['question'])
-
-        st.markdown("<div style='padding:3px 7px 3px 7px;borderWidth: 0px;background:#fffee0;borderColor: red;borderStyle: solid;width: fit-content;height: fit-content;border-radius: 10px;'>"+md['question']+"</div>", unsafe_allow_html = True)
+        safe_question = html.escape(md['question'])
+        st.markdown("<div style='padding:3px 7px 3px 7px;borderWidth: 0px;background:#fffee0;borderColor: red;borderStyle: solid;width: fit-content;height: fit-content;border-radius: 10px;'>"+safe_question+"</div>", unsafe_allow_html = True)
        
 def render_answer(answer,search_type,index):
     col1, col2, col3, col4 = st.columns([2,20,6,1])
@@ -163,7 +164,8 @@ def render_answer(answer,search_type,index):
         # self.text+=token+"/" 
         # self.container.markdown(self.text) 
         #st.markdown(answer,unsafe_allow_html = True)
-        st.markdown("<div style='padding:3px 7px 3px 7px;borderWidth: 0px;background:#D4F1F4;borderColor: red;borderStyle: solid;width: fit-content;height: fit-content;border-radius: 10px;'><b>"+answer+"</b></div>", unsafe_allow_html = True)
+        safe_answer = html.escape(answer)
+        st.markdown("<div style='padding:3px 7px 3px 7px;borderWidth: 0px;background:#D4F1F4;borderColor: red;borderStyle: solid;width: fit-content;height: fit-content;border-radius: 10px;'><b>"+safe_answer+"</b></div>", unsafe_allow_html = True)
        
     with col3:
         if(search_type== 'Conversational Search (RAG)'):
