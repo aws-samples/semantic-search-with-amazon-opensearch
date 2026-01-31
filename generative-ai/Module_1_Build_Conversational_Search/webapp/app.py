@@ -1,6 +1,8 @@
 import streamlit as st
 import uuid
 import os
+import re
+import subprocess
 import boto3
 import requests
 import api
@@ -282,12 +284,21 @@ with st.sidebar:
         with st.spinner("Processing"):
             for pdf_doc in pdf_docs:
                 print(type(pdf_doc))
-                pdf_doc_name = (pdf_doc.name).replace(" ","_")
+                # Sanitize filename: only allow alphanumeric, underscores, hyphens, and dots
+                pdf_doc_name = re.sub(r'[^a-zA-Z0-9_.\-]', '_', pdf_doc.name)
                 print("aws s3 cp pdfs"+pdf_doc_name+" s3://"+s3_bucket_)
                 with open(os.path.join("/home/ec2-user/pdfs",pdf_doc_name),"wb") as f: 
                     f.write(pdf_doc.getbuffer())  
-                    os.system("aws s3 cp /home/ec2-user/pdfs/"+pdf_doc_name+" s3://"+s3_bucket_)
-                request_ = '{ "bucket": "'+s3_bucket_+'","key": "'+pdf_doc_name+'" }'
-                os.system("aws lambda invoke --function-name documentEncoder --cli-binary-format raw-in-base64-out --payload '"+request_+"' response.json")
+                    # Use subprocess with argument list to prevent command injection
+                    subprocess.run(
+                        ["aws", "s3", "cp", f"/home/ec2-user/pdfs/{pdf_doc_name}", f"s3://{s3_bucket_}"],
+                        check=True
+                    )
+                request_payload = json.dumps({"bucket": s3_bucket_, "key": pdf_doc_name})
+                subprocess.run(
+                    ["aws", "lambda", "invoke", "--function-name", "documentEncoder",
+                     "--cli-binary-format", "raw-in-base64-out", "--payload", request_payload, "response.json"],
+                    check=True
+                )
                 print('lambda done')
         st.success('you can start searching on your PDF')
